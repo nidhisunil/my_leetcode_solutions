@@ -1,0 +1,31 @@
+# Tree definition, add some elements to it, perform inorder traversal to print only the right most  nodes
+# If you want this to function as a regular inorder traversal, remove the "check" variable everywhere 
+class TreeNode:
+    def __init__(self, value=0): 
+        self.value = value
+        self.left = None 
+        self.right = None 
+        
+
+def traverse(root):
+    result = []
+    answer = inorder(root,result, check = "True")
+    return answer 
+    
+def inorder(root,result,check = "True"):
+    if not root:
+        return None 
+    inorder(root.left,result, check = "True")
+    if (check=="True"): #remove for regular inorder
+        result.append(root.value) 
+    inorder(root.right,result, check = "False")
+    return result
+    
+tree = TreeNode(1)
+tree.left = TreeNode(2)
+tree.right = TreeNode(3)
+tree.left.left = TreeNode(4)
+tree.left.right = TreeNode(5)
+
+                     
+print(traverse(tree))
